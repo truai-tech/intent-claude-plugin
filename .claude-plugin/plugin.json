@@ -8,6 +8,15 @@
   },
   "license": "MIT",
   "keywords": ["claude", "plugin", "intent", "changeset", "mcp"],
-  "repository": "https://github.com/intent-io/intent-claude-plugin",
-  "mcpServers": "./.mcp.json"
+  "repository": "https://github.com/truai-tech/intent-claude-plugin",
+  "mcpServers": "./.mcp.json",
+  "userConfig": {
+    "intent_api_token": {
+      "type": "string",
+      "title": "Intent API token",
+      "description": "Create one in Intent → Settings. Used for the Intent MCP server.",
+      "sensitive": true,
+      "required": true
+    }
+  }
 }

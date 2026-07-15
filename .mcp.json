@@ -3,7 +3,7 @@
     "intent-mcp-server": {
       "url": "https://api.onintent.build/mcp/",
       "headers": {
-        "Authorization": "Bearer ${env:INTENT_API_TOKEN}"
+        "Authorization": "Bearer ${user_config.intent_api_token}"
       }
     }
   }

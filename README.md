@@ -22,7 +22,6 @@ Unlike the Cursor plugin, Claude Code does not support custom slash commands. In
 
 - An [Intent](https://onintent.build) account with at least one project and indexed repositories
 - Claude Code with MCP support
-- Python 3 (for the session-start hook that loads rules)
 - An Intent API token
 
 ---
@@ -37,29 +36,27 @@ Unlike the Cursor plugin, Claude Code does not support custom slash commands. In
 
 ### Local development
 
+Install from a local path inside Claude Code (so the token prompt appears):
+
+```
+/plugin install /path/to/intent-claude-plugin
+```
+
+Or load for a single session:
+
 ```bash
 claude --plugin-dir /path/to/intent-claude-plugin
 ```
 
-Or install from a local path:
+**API token** — Claude Code prompts for your Intent API token when you enable the plugin (`userConfig` in the manifest). The value is stored securely (keychain on macOS). Create a token in the Intent app under **Settings**.
 
-```bash
-claude plugin install /path/to/intent-claude-plugin
-```
-
-Set your Intent API token:
-
-```bash
-export INTENT_API_TOKEN="your-token-here"
-```
-
-Create an API token in the Intent app under **Settings**.
+If the MCP server fails to connect after install, open the plugin settings and confirm the token is set — the prompt appears on `/plugin install` inside Claude Code, not always when using `claude plugin install` from the shell.
 
 ---
 
 ## Quick start
 
-1. Install the plugin and set `INTENT_API_TOKEN`
+1. Install the plugin and enter your Intent API token when prompted
 2. Open Claude Code in a workspace with your Intent-linked repos
 3. Say *"use the start-changeset skill for changeset `<id>`"* — or ask to pick up in-progress work
 4. Run **verify-changeset** before merge; **refine-changeset** if specs need to catch up
@@ -82,13 +79,14 @@ Create an API token in the Intent app under **Settings**.
 ```text
 intent-claude-plugin/
 ├── .claude-plugin/
-│   └── plugin.json              # Claude Code plugin manifest
+│   └── plugin.json              # Manifest + userConfig (API token prompt)
 ├── hooks/
 │   └── hooks.json               # SessionStart → inject AGENTS.md
 ├── AGENTS.md                    # Always-on Intent rules (plugin-internal)
 ├── .mcp.json                    # Intent MCP server configuration
 ├── scripts/
-│   └── inject-agents-context.py
+│   ├── inject-agents-context.sh
+│   └── inject-agents-context.ps1
 ├── skills/
 │   ├── start-changeset/SKILL.md
 │   ├── status-changeset/SKILL.md
@@ -108,7 +106,7 @@ If you cannot install the plugin, use the **Connect IDE** pane in Intent's comma
 ## Related plugins
 
 - [Intent Cursor plugin](https://github.com/truai-tech/intent-cursor-plugin)
-- [Intent Copilot plugin](https://github.com/intent-io/intent-copilot-plugin)
+- [Intent Copilot plugin](https://github.com/truai-tech/intent-copilot-plugin)
 
 ---
 
