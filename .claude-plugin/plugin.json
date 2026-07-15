@@ -1,0 +1,13 @@
+{
+  "name": "intent",
+  "displayName": "Intent",
+  "description": "Claude Code plugin for Intent — changeset workflows, project context, and MCP integration.",
+  "version": "0.1.0",
+  "author": {
+    "name": "truai.tech"
+  },
+  "license": "MIT",
+  "keywords": ["claude", "plugin", "intent", "changeset", "mcp"],
+  "repository": "https://github.com/intent-io/intent-claude-plugin",
+  "mcpServers": "./.mcp.json"
+}
